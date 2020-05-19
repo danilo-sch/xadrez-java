@@ -35,7 +35,7 @@ public class ChessMatch {
 	}
 	
 	private void validateTargetPosition(Position source, Position target) {
-		if(board.piece(source).possibleMove(target)) {
+		if(!board.piece(source).possibleMove(target)) {
 			throw new ChessException("Local invalido");
 		}
 		
@@ -45,11 +45,16 @@ public class ChessMatch {
 		if(!board.thereIsAPiece(position)) {
 			throw new ChessException("Nao existe peca na posicao atual");
 		}
-		if (board.piece(position).isThereAnyPossibleMove()) {
+		if (!board.piece(position).isThereAnyPossibleMove()) {
 			throw new ChessException("A peca nao pode se mover para esse local");
 		}
 	}
 	
+	public boolean[][] possibleMoves(ChessPosition sourcePosition){
+		Position position = sourcePosition.toPosition();
+		validadeSourcePosition(position);
+		return board.piece(position).possibleMoves();
+	}
 	
 	private Piece makeMove(Position source, Position target) {
 		Piece p = board.removePiece(source);
