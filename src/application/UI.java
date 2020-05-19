@@ -6,8 +6,10 @@ import java.util.Scanner;
 
 import chess.ChessPiece;
 import chess.ChessPosition;
+import chess.Color;
 
 public class UI {
+	
 	
 		public static ChessPosition readChessPosition(Scanner sc) {
 			try {
@@ -36,7 +38,12 @@ public class UI {
 			if(piece == null) {
 				System.out.print("-");
 			}else {
-				System.out.print(piece);
+				if (piece.getColor() == Color.WHITE) {
+					System.out.print(piece + "W");
+				}
+				else {
+				System.out.print(piece+"B");
+				}
 			}
 			System.out.print(" ");
 			
